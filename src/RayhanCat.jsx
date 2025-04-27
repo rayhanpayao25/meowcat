@@ -22,7 +22,7 @@ export default function RayhanCat({ theme, setTheme, goBack }) {
   const [catFact, setCatFact] = useState("Cats spend 70% of their lives sleeping.")
   const [isLoading, setIsLoading] = useState(false)
   
-  // Create an array of cat images with metadata
+
   const catImages = [
     { 
       src: ChiranImg, 

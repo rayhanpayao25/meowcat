@@ -3,46 +3,53 @@
 import { useState } from "react"
 import { ChevronLeft, ChevronRight, Heart } from "lucide-react"
 
-// Sample gallery data
+import maineCoonImage from "../assets/maine coon cat.jpg"
+import siameseImage from "../assets/Siamese.jpg"
+import bengalImage from "../assets/bengal.jpg"
+import persianImage from "../assets/persian.jpg"
+import ragdollImage from "../assets/ragdoll.jpg"
+import scottishFoldImage from "../assets/ScottishFold.jpg"
+
+
 const GALLERY_ITEMS = [
   {
     id: 1,
-    imageUrl: "/src/assets/maine coon cat.jpg", // Use local image path
+    src: maineCoonImage,
     breed: "Maine Coon",
     confidence: "92%",
     owner: "Sarah J.",
   },
   {
     id: 2,
-    imageUrl: "/src/assets/Siamese.jpg", // Use local image path
+    src: siameseImage,
     breed: "Siamese",
     confidence: "87%",
     owner: "Mike T.",
   },
   {
     id: 3,
-    imageUrl: "/src/assets/bengal.jpg", // Use local image path
+    src: bengalImage,
     breed: "Bengal",
     confidence: "94%",
     owner: "Emma R.",
   },
   {
     id: 4,
-    imageUrl: "/src/assets/persian.jpg", // Use local image path
+    src: persianImage,
     breed: "Persian",
     confidence: "89%",
     owner: "John D.",
   },
   {
     id: 5,
-    imageUrl: "/src/assets/ragdoll.jpg", // Keep external URL as fallback
+    src: ragdollImage,
     breed: "Ragdoll",
     confidence: "91%",
     owner: "Lisa M.",
   },
   {
     id: 6,
-    imageUrl: "/src/assets/ScottishFold.jpg", // Keep external URL as fallback
+    src: scottishFoldImage,
     breed: "Scottish Fold",
     confidence: "88%",
     owner: "Alex P.",
@@ -92,11 +99,11 @@ export default function CatGallery() {
             >
               <div className="relative h-48 overflow-hidden rounded-t-3xl">
                 <img
-                  src={item.imageUrl || "/placeholder.svg"}
+                  src={item.src || "/placeholder.svg"}
                   alt={`${item.breed} cat`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   onError={(e) => {
-                    // Fallback to placekitten if local image fails to load
+                    console.log(`Failed to load image: ${item.src}`)
                     e.target.src = `https://placekitten.com/600/400?image=${item.id}`
                   }}
                 />
@@ -108,7 +115,10 @@ export default function CatGallery() {
                 </div>
                 <button
                   className={`absolute top-2 right-2 rounded-full p-2 bg-white/80 hover:bg-white ${likedItems[item.id] ? "text-pink-500" : "text-gray-400"}`}
-                  onClick={() => toggleLike(item.id)}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    toggleLike(item.id)
+                  }}
                 >
                   <Heart className={`h-5 w-5 ${likedItems[item.id] ? "fill-current" : ""}`} />
                 </button>
