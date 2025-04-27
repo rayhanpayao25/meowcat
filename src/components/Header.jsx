@@ -1,10 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Moon, Sun, Menu, X, Heart } from "lucide-react"
+import { Moon, Sun, Menu, X, Heart } from 'lucide-react'
 import { Button } from "./ui/button"
 
-export default function Header({ theme, toggleTheme }) {
+export default function Header({ theme, toggleTheme, navigateToRayhanCat }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -55,8 +55,11 @@ export default function Header({ theme, toggleTheme }) {
           <Button variant="ghost" size="icon" onClick={toggleTheme} className="animate-pulse-slow rounded-full">
             {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
           </Button>
-          <Button className="rounded-full flex items-center gap-2 bg-pink-500 hover:bg-pink-600">
-            <Heart className="h-4 w-4" /> Love Cats
+          <Button 
+            className="rounded-full flex items-center gap-2 bg-pink-500 hover:bg-pink-600"
+            onClick={navigateToRayhanCat}
+          >
+            <Heart className="h-4 w-4" />  Rayhan's Cats Gallery
           </Button>
         </div>
 
@@ -90,8 +93,14 @@ export default function Header({ theme, toggleTheme }) {
                 </a>
               </li>
               <li className="px-4 py-2">
-                <Button className="w-full rounded-full flex items-center justify-center gap-2 bg-pink-500 hover:bg-pink-600">
-                  <Heart className="h-4 w-4" /> Love Cats
+                <Button 
+                  className="w-full rounded-full flex items-center justify-center gap-2 bg-pink-500 hover:bg-pink-600"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    navigateToRayhanCat();
+                  }}
+                >
+                  <Heart className="h-4 w-4" /> Rayhan's Cats
                 </Button>
               </li>
             </ul>
