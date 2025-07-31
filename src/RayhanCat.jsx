@@ -13,7 +13,6 @@ import sojiImg from './assets/soji.png'
 import LeviImg from './assets/levi.jpg'
 import sheverImg from './assets/shever.png'
 import nikoyImg from './assets/nikoy.png'
-import kaiImg from './assets/kai.jpg'
 import babiesImg from './assets/babies.png'
 
 
@@ -39,10 +38,7 @@ export default function RayhanCat({ theme, setTheme, goBack }) {
       src: koniImg, 
       name: "Koni",
     },
-    { 
-        src: kaiImg, 
-        name: "Kai",
- },
+    
     { 
       src: skyImg, 
       name: "Sky",
